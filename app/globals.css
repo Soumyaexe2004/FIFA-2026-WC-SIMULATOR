@@ -1,0 +1,170 @@
+@import "tailwindcss";
+
+/* ── Custom theme tokens ── */
+:root {
+  --bg-primary: #0a0e1a;
+  --bg-secondary: #0f172a;
+  --accent-cyan: #06b6d4;
+  --accent-gold: #f59e0b;
+  --glow-cyan: 0 0 20px rgba(6, 182, 212, 0.15);
+  --glow-gold: 0 0 20px rgba(245, 158, 11, 0.15);
+}
+
+/* ── Global reset & base ── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg-primary);
+  color: #e2e8f0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Animated background pattern ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% -20%, rgba(6, 182, 212, 0.06), transparent),
+    radial-gradient(ellipse 60% 40% at 80% 100%, rgba(139, 92, 246, 0.04), transparent),
+    radial-gradient(ellipse 40% 30% at 10% 60%, rgba(245, 158, 11, 0.03), transparent);
+  pointer-events: none;
+}
+
+/* ── Scrollbar styling ── */
+.scrollbar-thin::-webkit-scrollbar {
+  height: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.5);
+  border-radius: 3px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.4);
+  border-radius: 3px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.6);
+}
+
+/* ── Bracket tree connector lines ── */
+.bracket-tree > div {
+  position: relative;
+}
+
+.bracket-tree > div:not(:last-child) {
+  margin-right: 40px;
+}
+
+/* ── Animations ── */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(6, 182, 212, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.4);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out forwards;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+/* ── Group card hover glow ── */
+.group-card:hover {
+  box-shadow: var(--glow-cyan);
+}
+
+/* ── Tab button active state shimmer ── */
+.tab-active {
+  background: linear-gradient(
+    90deg,
+    rgba(6, 182, 212, 0.1),
+    rgba(6, 182, 212, 0.2),
+    rgba(6, 182, 212, 0.1)
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+/* ── Selection styles ── */
+::selection {
+  background: rgba(6, 182, 212, 0.3);
+  color: white;
+}
+
+/* ── Focus visible ── */
+*:focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 2px;
+}
+
+/* ── Hero gradient text ── */
+.gradient-text {
+  background: linear-gradient(135deg, #06b6d4, #8b5cf6, #f59e0b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Glass panel ── */
+.glass-panel {
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(100, 116, 139, 0.15);
+}
+
+/* ── Bracket Container (Export-ready infographic styling) ── */
+#bracket-container {
+  background: linear-gradient(170deg, #0b1120 0%, #060a14 50%, #0a0f1d 100%);
+  position: relative;
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid rgba(100, 116, 139, 0.12);
+}
+
+/* Subtle grid texture for sports-broadcast feel */
+#bracket-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.012) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.012) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
